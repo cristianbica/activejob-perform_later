@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in activejob-perform_later.gemspec
+gem 'activejob', github: 'rails/rails', branch: '4-2-stable'
+gem 'activesupport', github: 'rails/rails', branch: '4-2-stable'
+
 gemspec

@@ -4,7 +4,6 @@ Bundler.setup
 $LOAD_PATH << File.dirname(__FILE__) + '/../lib'
 
 require 'activejob/perform_later'
-require 'active_support/core_ext/hash/keys'
 require 'active_support/core_ext/numeric/time'
 
 ActiveSupport::TestCase.test_order = :random
