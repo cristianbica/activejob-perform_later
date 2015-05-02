@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/cristianbica/activejob-perform_later.svg?branch=master)](https://travis-ci.org/cristianbica/activejob-perform_later)
+
+
 # Activejob::PerformLater
 
 Make any method perfomed later.
