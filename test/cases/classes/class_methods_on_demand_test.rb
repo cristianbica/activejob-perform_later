@@ -1,7 +1,7 @@
-require 'helper'
-require 'classes/test_class'
+require "helper"
+require "support/test_class"
 
-class ClassMethodsAlwaysTest < ActiveSupport::TestCase
+class ClassesClassMethodsOnDemandTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
   def test_enqueues_the_job
@@ -25,11 +25,10 @@ class ClassMethodsAlwaysTest < ActiveSupport::TestCase
   end
 
   def test_enqueues_the_job_on_a_queue
-    assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "five", [1, 2]], queue: 'non_default') do
-        TestClass.perform_later(queue: "non_default").five(1, 2)
+    assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "five", [1, 2]], queue: "non_default") do
+      TestClass.perform_later(queue: "non_default").five(1, 2)
     end
   end
-
 
   def test_performs_the_job
     assert_performed_jobs 1 do
@@ -52,8 +51,8 @@ class ClassMethodsAlwaysTest < ActiveSupport::TestCase
   end
 
   def test_performs_the_job_on_a_queue
-    assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "five", [1, 2]], queue: 'non_default') do
-        TestClass.perform_later(queue: "non_default").five(1, 2)
+    assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "five", [1, 2]], queue: "non_default") do
+      TestClass.perform_later(queue: "non_default").five(1, 2)
     end
   end
 end

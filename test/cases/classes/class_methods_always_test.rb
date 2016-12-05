@@ -1,7 +1,7 @@
-require 'helper'
-require 'classes/test_class'
+require "helper"
+require "support/test_class"
 
-class ClassMethodsAlwaysTest < ActiveSupport::TestCase
+class ClassesClassMethodsAlwaysTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
   def test_creates_later_and_now_methods
@@ -29,7 +29,7 @@ class ClassMethodsAlwaysTest < ActiveSupport::TestCase
   end
 
   def test_enqueues_the_job_on_a_queue
-    assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2]], queue: 'non_default') do
+    assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2]], queue: "non_default") do
       TestClass.three(1, 2)
     end
   end
@@ -49,7 +49,7 @@ class ClassMethodsAlwaysTest < ActiveSupport::TestCase
   end
 
   def test_performs_the_job_on_a_queue
-    assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2]], queue: 'non_default') do
+    assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2]], queue: "non_default") do
       TestClass.three(1, 2)
     end
   end

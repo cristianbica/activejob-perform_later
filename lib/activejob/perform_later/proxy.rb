@@ -2,7 +2,7 @@ module Activejob
   module PerformLater
     class Proxy < BasicObject
       def initialize(target, options)
-        @target = target
+        @target = Util.proxiable_object(target)
         @options = options
       end
 

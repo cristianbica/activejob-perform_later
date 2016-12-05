@@ -1,14 +1,4 @@
-class TestClass
-  include GlobalID::Identification
-
-  def self.find(*)
-    new
-  end
-
-  def id
-    0
-  end
-
+module TestModule
   def self.one(*)
   end
   perform_later :one
@@ -19,15 +9,12 @@ class TestClass
 
   def self.three(*)
   end
-  perform_later :three, queue: 'non_default'
+  perform_later :three, queue: "non_default"
 
   def self.four?(*)
   end
   perform_later :four?
 
   def self.five(*)
-  end
-
-  def six(*)
   end
 end
