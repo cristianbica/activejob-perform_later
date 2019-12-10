@@ -1,14 +1,15 @@
 require "activejob/perform_later/version"
 require "active_support"
 require "active_job"
-require "activejob/perform_later/configuration"
 
 module Activejob
   module PerformLater
     extend ActiveSupport::Autoload
 
-    autoload :Job
     autoload :JobMixin
+    autoload :Job
+
+    autoload :Configuration
     autoload :Proxy
     autoload :Mixin
     autoload :Util
