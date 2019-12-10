@@ -1,13 +1,17 @@
 module Activejob
   module PerformLater
     class Configuration
-      attr_accessor :job_base_class # ActiveJob::Base
+      attr_accessor :job_base_class
 
       def initialize
+        @job_base_class = default_job_base_class
+      end
+
+      def default_job_base_class
         if defined?(ApplicationJob)
-          @job_base_class = ApplicationJob
+          ApplicationJob
         else
-          @job_base_class = ActiveJob::Base
+          ActiveJob::Base
         end
       end
     end
