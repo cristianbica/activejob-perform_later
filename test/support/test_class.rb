@@ -1,12 +1,14 @@
 class TestClass
   include GlobalID::Identification
 
-  def self.find(*)
-    new
+  attr_reader :id
+
+  def self.find(id)
+    new(id)
   end
 
-  def id
-    0
+  def initialize(id = nil)
+    @id = id || SecureRandom.hex
   end
 
   def self.one(*)
