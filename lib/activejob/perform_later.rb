@@ -13,7 +13,7 @@ module Activejob
     autoload :Util
 
     class << self
-      attr_accessor :configuration
+      attr_writer :configuration
     end
 
     def self.configuration
