@@ -8,6 +8,7 @@ module Activejob
     extend ActiveSupport::Autoload
 
     autoload :Job
+    autoload :JobMixin
     autoload :Proxy
     autoload :Mixin
     autoload :Util

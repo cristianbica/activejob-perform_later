@@ -1,10 +1,10 @@
 module Activejob
   module PerformLater
     class Configuration
-      attr_accessor :job_base_class
+      attr_accessor :job_class
 
       def initialize
-        @job_base_class = ActiveJob::Base
+        @job_class = Activejob::PerformLater::Job
       end
     end
   end
