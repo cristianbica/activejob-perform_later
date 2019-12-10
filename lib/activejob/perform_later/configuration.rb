@@ -4,15 +4,7 @@ module Activejob
       attr_accessor :job_base_class
 
       def initialize
-        @job_base_class = default_job_base_class
-      end
-
-      def default_job_base_class
-        if defined?(ApplicationJob)
-          ApplicationJob
-        else
-          ActiveJob::Base
-        end
+        @job_base_class = ActiveJob::Base
       end
     end
   end
