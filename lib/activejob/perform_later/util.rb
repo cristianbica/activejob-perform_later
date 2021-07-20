@@ -19,7 +19,7 @@ module Activejob
         aliased_method, punctuation = method_name.to_s.sub(/([?!=])$/, ""), $1
         now_method, later_method = "#{aliased_method}_now#{punctuation}", "#{aliased_method}_later#{punctuation}"
         obj.singleton_class.send(:define_method, later_method) do |*args|
-          Job.new(::Activejob::PerformLater::Util.proxiable_object(obj), now_method, args).enqueue options
+          ::Activejob::PerformLater.configuration.job_class.new(::Activejob::PerformLater::Util.proxiable_object(obj), now_method, args).enqueue options
         end
         obj.singleton_class.send(:alias_method, now_method, method_name)
         obj.singleton_class.send(:alias_method, method_name, later_method)
