@@ -6,8 +6,8 @@ module Activejob
         @options = options
       end
 
-      def method_missing(method_name, *args)
-        Job.new(@target, method_name.to_s, args).enqueue @options
+      def method_missing(method_name, *args, **opts)
+        Job.new(@target, method_name.to_s, args, opts).enqueue @options
       end
     end
   end
