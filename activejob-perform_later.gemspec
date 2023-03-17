@@ -6,8 +6,8 @@ require 'activejob/perform_later/version'
 Gem::Specification.new do |spec|
   spec.name          = "activejob-perform_later"
   spec.version       = Activejob::PerformLater::VERSION
-  spec.authors       = ["Cristian Bica"]
-  spec.email         = ["cristian.bica@gmail.com"]
+  spec.authors       = ["Cristian Bica", "Kasper Stöckel"]
+  spec.email         = ["cristian.bica@gmail.com", "k@spernj.org"]
   spec.summary       = %q{Make any method perfomed later.}
   spec.description   = %q{Take advantage of Active Job you can perform any class method later.}
   spec.homepage      = ""

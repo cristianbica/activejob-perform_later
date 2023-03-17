@@ -4,10 +4,6 @@ require "support/test_class"
 class ClassesInstanceMethodsOnDemandTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
-  def global_id(obj)
-    {"_aj_globalid" => obj.to_global_id.to_s}
-  end
-
   def test_enqueues_the_job
     assert_enqueued_jobs 1 do
       TestClass.new.perform_later.six
@@ -15,18 +11,8 @@ class ClassesInstanceMethodsOnDemandTest < ActiveSupport::TestCase
   end
 
   def test_enqueues_the_job_with_arguments
-    test_instance = TestClass.new
-
-    assert_enqueued_jobs 1 do
-      test_instance.perform_later.six(1, 2)
-
-      expected_job_params =  {
-        :job=>Activejob::PerformLater::Job,
-        :args=>[global_id(test_instance), "six", [1, 2]],
-        :queue=>"default"
-      }
-
-      assert_equal(enqueued_jobs, [expected_job_params])
+    assert_enqueued_with(job: Activejob::PerformLater::Job, args: [TestClass.new, "six", [1, 2], {}]) do
+      TestClass.new.perform_later.six(1, 2)
     end
   end
 
@@ -51,18 +37,8 @@ class ClassesInstanceMethodsOnDemandTest < ActiveSupport::TestCase
   end
 
   def test_performs_the_job_with_arguments
-    test_instance = TestClass.new
-
-    assert_performed_jobs 1 do
-      test_instance.perform_later.six(1, 2)
-
-      expected_job_params =  {
-        :job=>Activejob::PerformLater::Job,
-        :args=>[global_id(test_instance), "six", [1, 2]],
-        :queue=>"default"
-      }
-
-      assert_equal(performed_jobs, [expected_job_params])
+    assert_performed_with(job: Activejob::PerformLater::Job, args: [TestClass.new, "six", [1, 2], {}]) do
+      TestClass.new.perform_later.six(1, 2)
     end
   end
 

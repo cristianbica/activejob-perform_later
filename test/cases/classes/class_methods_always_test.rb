@@ -22,14 +22,14 @@ class ClassesClassMethodsAlwaysTest < ActiveSupport::TestCase
 
   def test_enqueues_the_job_with_delay
     travel_to Time.now do
-      assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "two_now", [1, 2]], at: 60.seconds.from_now.to_f) do
+      assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "two_now", [1, 2], {}], at: 60.seconds.from_now.to_f) do
         TestClass.two(1, 2)
       end
     end
   end
 
   def test_enqueues_the_job_on_a_queue
-    assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2]], queue: "non_default") do
+    assert_enqueued_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2], {}], queue: "non_default") do
       TestClass.three(1, 2)
     end
   end
@@ -42,14 +42,14 @@ class ClassesClassMethodsAlwaysTest < ActiveSupport::TestCase
 
   def test_performs_the_job_with_delay
     travel_to Time.now do
-      assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "two_now", [1, 2]], at: 60.seconds.from_now.to_f) do
+      assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "two_now", [1, 2], {}], at: 60.seconds.from_now.to_f) do
         TestClass.two(1, 2)
       end
     end
   end
 
   def test_performs_the_job_on_a_queue
-    assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2]], queue: "non_default") do
+    assert_performed_with(job: Activejob::PerformLater::Job, args: ["TestClass", "three_now", [1, 2], {}], queue: "non_default") do
       TestClass.three(1, 2)
     end
   end
